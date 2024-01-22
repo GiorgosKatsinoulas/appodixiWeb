@@ -1,9 +1,28 @@
+import { useNavigate } from 'react-router-dom';
+import AadeImg from '../assets/AadeGR.png';
+import {
+  Container,
+  Header,
+  HeaderImage,
+  Box,
+  Paragraph,
+  Input,
+  Button,
+} from './styles/styledComponents';
+
 const Home = () => {
   return (
     <>
-      <div>
-        <p>Home Screen</p>
-      </div>
+      <Container>
+        <Header>
+          <HeaderImage src={AadeImg} alt="Aade header image" />
+        </Header>
+        <Box>
+          <Paragraph>Enter the receipt URL!</Paragraph>
+          <Input />
+          <Button>check!</Button>
+        </Box>
+      </Container>
     </>
   );
 };
