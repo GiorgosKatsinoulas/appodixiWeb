@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { ReceiptURLData } from '../typescript/interfacesTs';
+import { FormData } from '../typescript/interfacesTs';
 
 const headers = {
   Accept: 'application/json',
 };
-
+const basePostUrl = 'http://localhost:3000/postForm';
 function generateApiUrl({ codeFHM, receiptAA, digitalSign }: ReceiptURLData) {
   // Use the appropriate base URL based on the environment (e.g., development, production).
   // Example: For development, use 'http://localhost:3000/getData', for production, use the AADE URL.
@@ -36,4 +37,17 @@ export async function fetchReceiptData({
     });
 
   return response;
+}
+export async function postFrom(formData: FormData) {
+  try {
+    const response = await axios.post(
+      basePostUrl,
+      { formData },
+      { headers: headers }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw new Error('An error occurred while updating the event');
+  }
 }
