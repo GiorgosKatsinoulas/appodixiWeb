@@ -50,6 +50,7 @@ const Home: React.FC = () => {
       setReceiptURL({ codeFHM, receiptAA, digitalSign });
       setIsFetchingData((prevValue) => !prevValue);
     } else {
+      alert('Wrong URL input! Try again!');
       console.error('Failed to parse URL');
     }
   }
@@ -67,7 +68,6 @@ const Home: React.FC = () => {
         <Header>
           <HeaderImage src={AadeImg} alt="Aade header image" />
         </Header>
-
         <Box>
           {isLoading ? (
             <Paragraph>Loading....</Paragraph>
