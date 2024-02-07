@@ -8,14 +8,26 @@ import {
   Paragraph,
   ResponsiveImage,
 } from '../styles/styledComponents';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FinalReceiptData } from '../typescript/interfacesTs';
 import Select from 'react-select';
 import { COLORS } from '../styles/colors';
 import { FormData } from '../typescript/interfacesTs';
+import { useMutation } from '@tanstack/react-query';
+import { postFrom } from '../request/http';
 
 const ReportPage = () => {
   const location = useLocation();
+  const navigation = useNavigate();
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: postFrom,
+    onSuccess: () => {
+      navigation('/');
+    },
+    onError: () => {
+      alert('Error on posting form');
+    },
+  });
 
   const processedReceipt: FinalReceiptData | null = location.state;
   const [file, setFile] = useState('');
@@ -110,7 +122,7 @@ const ReportPage = () => {
       setFormDataEmptyFields((prev) => !prev);
     }
     // Handle form submission here
-    console.log('hiii', formData);
+    mutate(formData);
   };
 
   return (
