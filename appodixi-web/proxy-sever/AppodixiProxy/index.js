@@ -37,9 +37,9 @@ app.use(
 // New endpoint for handling POST requests
 app.post('/postForm', (req, res) => {
   // Example condition for demonstrating a 400 error not needed for my testing purposes
-  if (!req.body.someRequiredField) {
-    return res.status(400).send('Missing required field: someRequiredField');
-  }
+  // if (!req.body.someRequiredField) {
+  //   return res.status(400).send('Missing required field: someRequiredField');
+  // }
   // Handle the POST request logic here
 
   // If everything is successful, send a 200 response
